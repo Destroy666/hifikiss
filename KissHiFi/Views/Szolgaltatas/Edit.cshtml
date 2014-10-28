@@ -1,0 +1,56 @@
+﻿@model KissHiFi.Models.Szolgaltatas
+
+@{
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Szolgaltatas</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Tevekenyseg)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Tevekenyseg, new { @class = "ckeditor" })
+            @Html.ValidationMessageFor(model => model.Tevekenyseg)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Szerviz)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Szerviz, new { @class = "ckeditor" })
+            @Html.ValidationMessageFor(model => model.Szerviz)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Hangositas)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Hangositas, new { @class = "ckeditor" })
+            @Html.ValidationMessageFor(model => model.Hangositas)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+}

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<KissHiFi.Models.Hirek>
+
+@{
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+    ViewBag.Title = "Hírek";
+}
+
+<h2>Hírek</h2>
+
+<p>
+    @Html.ActionLink("Új hír", "Create")
+</p>
+
+
+@foreach (var item in Model) {
+    <article>
+        <h3>@Html.DisplayFor(model => item.Cim)</h3>
+        <span>@Html.DisplayFor(modelItem => item.Datum)</span><br/>
+        @Html.DisplayFor(modelItem => item.Tartalom)
+    </article>
+
+    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) 
+    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+
+}

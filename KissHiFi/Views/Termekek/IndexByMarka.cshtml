@@ -1,0 +1,29 @@
+﻿@model IEnumerable<KissHiFi.Models.TermekAdatlap>
+
+@{
+    ViewBag.Title = "Termékek - " + ViewBag.aktKategoria + " - " + ViewBag.aktMarka;
+}
+
+<h2>
+    @Html.ActionLink("Termékek","Index") /
+    @Html.ActionLink((string)ViewBag.aktKategoria,(string)ViewBag.Kategoria,"Termekek") / 
+    @Html.ActionLink((string)ViewBag.aktMarka,(string)ViewBag.Kategoria + "/" + (string)ViewBag.Marka,"Termekek")
+</h2>
+
+<table class="termek">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionImage(Url.Content("~/Content/Termekek/" + item.Kep),item.Tipus,null,(string)ViewBag.Kategoria + "/" + (string)ViewBag.Marka + "/" + item.RouteNev, "Termekek",null)
+                </td>
+                <td>
+                    @Html.ActionLink(item.Tipus, (string)ViewBag.Kategoria + "/" + (string)ViewBag.Marka + "/" + item.RouteNev, "Termekek")
+                </td>
+            </tr>    
+        }        
+    </tbody>
+</table>
+
+

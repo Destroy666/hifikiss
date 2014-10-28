@@ -1,0 +1,96 @@
+﻿@model IEnumerable<string>
+
+@{
+	ViewBag.Title = "Képek";
+}
+
+<h2>Képek</h2>
+
+<div id="gallery" class="content">
+	<div id="controls" class="controls"></div>
+	<div class="slideshow-container">
+		<div id="loading" class="loader"></div>
+		<div id="slideshow" class="slideshow"></div>
+	</div>
+	<div id="caption" class="caption-container"></div>
+</div>
+<div id="thumbs" class="navigation">
+	<ul class="thumbs ui-helper-hidden">
+		@foreach (string picFile in Model)
+		{
+			<li>
+				<a class="thumb" href="@Url.Content("~/Content/Kepek/" + picFile)">
+					<img src="@Url.Content("~/Content/Kepek/Thumb/" + picFile)" class="thumbnail"/>
+				</a>
+				<div class="caption">
+					<div class="download">
+						<a href="@Url.Content("~/Content/Kepek/" + picFile)">Letöltés eredeti méretben</a>
+					</div>
+				</div>
+			</li>
+		}
+	</ul>
+</div>
+<div style="clear: both;"></div>
+
+@section css
+{
+	@Styles.Render("~/bundles/gallery")
+}
+
+@section scripts
+{
+	@Scripts.Render("~/bundles/galleryJS")
+	
+	<script>
+		jQuery(document).ready(function ($) {
+			$('div.navigation').css({ 'width': '230px', 'float': 'left' });
+			$('div.content').css('display', 'block');
+
+			var onMouseOutOpacity = 0.67;
+			$('#thumbs ul.thumbs li').opacityrollover({
+				mouseOutOpacity: onMouseOutOpacity,
+				mouseOverOpacity: 1.0,
+				fadeSpeed: 'fast',
+				exemptionSelector: '.selected'
+			});
+
+			var gallery = $('#thumbs').galleriffic({
+				delay: 2500,
+				numThumbs: 10,
+				preloadAhead: 10,
+				enableTopPager: true,
+				enableBottomPager: true,
+				maxPagesToShow: 7,
+				imageContainerSel: '#slideshow',
+				controlsContainerSel: '#controls',
+				captionContainerSel: '#caption',
+				loadingContainerSel: '#loading',
+				renderSSControls: true,
+				renderNavControls: true,
+				playLinkText: 'Bemutató indítása',
+				pauseLinkText: 'Bemutató megállítása',
+				prevLinkText: '&lsaquo; Előző kép',
+				nextLinkText: 'Következő kép &rsaquo;',
+				nextPageLinkText: 'Következő &rsaquo;',
+				prevPageLinkText: '&lsaquo; Előző',
+				enableHistory: false,
+				autoStart: true,
+				syncTransitions: true,
+				defaultTransitionDuration: 900,
+				onSlideChange: function (prevIndex, nextIndex) {
+					
+					this.find('ul.thumbs').children()
+						.eq(prevIndex).fadeTo('fast', onMouseOutOpacity).end()
+						.eq(nextIndex).fadeTo('fast', 1.0);
+				},
+				onPageTransitionOut: function (callback) {
+					this.fadeTo('fast', 0.0, callback);
+				},
+				onPageTransitionIn: function () {
+					this.fadeTo('fast', 1.0);
+				}
+			});
+		});
+		</script>
+}

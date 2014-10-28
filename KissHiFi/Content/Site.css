@@ -1,0 +1,248 @@
+﻿html {
+    height: 100%;
+    background-image: url('themes/base/images/background.jpg');
+    background-color: black;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+body {
+    font-size: .85em;
+    font-family: "Segoe UI" , Verdana, Helvetica, Sans-Serif;
+    color: white;
+    margin: 0 auto;
+    width: 995px;
+}
+
+header, footer, nav, section {
+    display: block;
+}
+
+nav {
+    background-image: linear-gradient(bottom, rgb(255,240,31) 0%, rgb(184,155,7) 100%);
+    background-image: -o-linear-gradient(bottom, rgb(255,240,31) 0%, rgb(184,155,7) 100%);
+    background-image: -moz-linear-gradient(bottom, rgb(255,240,31) 0%, rgb(184,155,7) 100%);
+    background-image: -webkit-linear-gradient(bottom, rgb(255,240,31) 0%, rgb(184,155,7) 100%);
+    background-image: -ms-linear-gradient(bottom, rgb(255,240,31) 0%, rgb(184,155,7) 100%);
+
+    background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0, rgb(255,240,31)),
+	    color-stop(1, rgb(184,155,7))
+    );
+
+    box-shadow: 0 3px 5px gold;
+}
+
+nav img {
+    float: left;
+    padding: 0 0 0 10px;
+    height: 60px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    height: 80px;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-size: large;
+    display: block;
+    padding: 25px 20px;
+    color: black;
+}
+
+nav ul li a:hover {
+    text-shadow: black 0px 1px 0, gold 0 -1px 0;
+}
+
+section {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    min-height: 500px;
+}
+
+a.termek {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+    vertical-align: top;
+    text-decoration: none;
+}
+
+a.termek:hover {
+    background-color: silver;
+}
+
+a.termek img {
+    max-width: 175px;
+    max-height: 150px;
+}
+
+img {
+    margin: 10px;
+}
+
+a {
+    color: gold;
+    text-decoration: none;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+}
+
+.center {
+    text-align: center;
+}
+
+h2{
+    font-size: x-large;
+    text-shadow: 5px 5px 5px #000000;
+    color: gold;
+}
+
+table.termek {
+    width: 100%;
+}
+
+td > a > img {
+    max-width: 120px;
+    max-height: 120px;
+    border: 0;
+}
+
+table.termek td:nth-child(2n) {
+    text-align: left;
+    width: 100%;
+    font-size: x-large;
+}
+
+table.termek tr:nth-child(2n) {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+article.adatlap > img {
+    max-width: 400px;
+}
+
+article.adatlap > span {
+    display: inline-block;
+    vertical-align: top;
+}
+
+article.adatlap > span > h2 {
+    width: 300px;
+    
+
+    background-image: linear-gradient(left , rgb(0,0,0) 51%, rgba(255,255,255,0) 100%);
+    background-image: -o-linear-gradient(left , rgb(0,0,0) 51%, rgba(255,255,255,0) 100%);
+    background-image: -moz-linear-gradient(left , rgb(0,0,0) 51%, rgba(255,255,255,0) 100%);
+    background-image: -webkit-linear-gradient(left , rgb(0,0,0) 51%, rgba(255,255,255,0) 100%);
+    background-image: -ms-linear-gradient(left , rgb(0,0,0) 51%, rgba(255,255,255,0) 100%);
+
+    background-image: -webkit-gradient(
+	    linear,
+	    left top,
+	    right top,
+	    color-stop(0.51, rgb(0,0,0)),
+	    color-stop(1, rgba(255,255,255,0))
+    );
+
+
+    display: inline-block;
+    margin-left: -14px;
+    padding: 10px;
+}
+
+article.hirek > h3 {
+    margin-bottom: 0;
+    font-size: x-large;
+}
+
+article.hirek > i {
+    font-size: 11px;
+}
+
+article.hirek > p {
+    margin-top: 0;
+}
+
+img.thumbnail {
+    margin: auto;
+    width: auto;
+    max-width: 75px;
+    height: auto;
+    max-height: 75px;
+}
+
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}

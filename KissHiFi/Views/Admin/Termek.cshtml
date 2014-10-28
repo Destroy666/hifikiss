@@ -1,0 +1,29 @@
+﻿@model IEnumerable<KissHiFi.Models.TermekAdatlap>
+
+@{
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+    ViewBag.Title = "Termek";
+}
+
+<h2>Termek</h2>
+
+@Html.ActionLink("Új termék felvitele","TermekUj")
+
+<ul>
+    @foreach (var kategoria in Model.Select(k => k.TermekKategoria.Nev).Distinct().ToList())
+    {
+        <li>@kategoria</li>
+            <ul>
+                @foreach (var marka in Model.Where(x => x.TermekKategoria.Nev == kategoria).Select(m => m.TermekMarka.Nev).Distinct().ToList())
+                {
+                    <li>@marka</li>
+                        <ul>
+                            @foreach (var item in Model.Where(k => k.TermekKategoria.Nev == kategoria).Where(m => m.TermekMarka.Nev == marka).ToList())
+                            {
+                                <li>@Html.ActionLink(item.Tipus,"TermekEdit",new {id=item.RouteNev})</li>
+                            }
+                        </ul>
+                }
+            </ul>
+    }    
+</ul>

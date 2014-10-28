@@ -1,0 +1,4 @@
+﻿User-agent: *
+disallow:
+disallow: /cgi-bin/
+sitemap: http://www.hifikiss.hu/sitemap.xml

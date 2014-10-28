@@ -1,0 +1,16 @@
+﻿@model IEnumerable<KissHiFi.Models.Hirek>
+
+@{
+    ViewBag.Title = "Hírek";
+}
+
+<h2>Hírek</h2>
+
+
+@foreach (var item in Model) {
+    <article class="hirek">
+        <h3>@Html.DisplayFor(model => item.Cim)</h3>
+        <i>@Html.DisplayFor(modelItem => item.Datum)</i>
+        @Html.Raw(item.Tartalom)
+    </article>
+}

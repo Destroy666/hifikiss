@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Zene";
+}
+
+<h2>Zene</h2>
+
+<div id="lejatszo"></div>
+
+@section css
+{
+    @Styles.Render("~/bundles/music")
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/musicJS")
+}
+
+<script>
+    $(function() {
+        $("#lejatszo").ttwMusicPlayer(myPlaylist, {
+            autoPlay: false,
+            jPlayer: {
+                swfPath: '../Scripts/Jplayer.swf'
+            }
+        });
+    });
+</script>
