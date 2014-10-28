@@ -1,0 +1,22 @@
+﻿@model IEnumerable<KissHiFi.Models.Szolgaltatas>
+
+@{
+    ViewBag.Title = "Szolgáltatások";
+}
+
+@foreach (var item in Model) {
+    <article>
+        <h2>Szolgáltatásaink</h2>
+        @Html.Raw(item.Tevekenyseg)
+    </article>
+    <hr/>
+    <article>
+        <h2>Szervíz</h2>
+        @Html.Raw(item.Szerviz)
+    </article>
+    <hr/>
+    <article>
+        <h2>Hangosítás</h2>
+        @Html.Raw(item.Hangositas)
+    </article>
+}

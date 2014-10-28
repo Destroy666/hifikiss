@@ -1,0 +1,163 @@
+﻿@model KissHiFi.Models.TermekAdatlap
+
+@{
+    ViewBag.Title = "TermekUj";
+}
+
+<h2>TermekUj</h2>
+
+ @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+ {
+     @Html.AntiForgeryToken()
+     @Html.ValidationSummary(true)
+
+     <fieldset>
+         <legend>Új termék felvitele</legend>
+         
+         <a href="javascript:gomb();">Katt ide</a>
+         
+         <div class="editor-label">
+             @Html.LabelFor(model => model.TermekKategoriaId)
+         </div>
+         <div class="editor-field">
+             @Html.DropDownListFor(model => model.TermekKategoriaId,(IOrderedEnumerable<SelectListItem>)ViewBag.Kategoria)
+             <a href="javascript:ujKategoria();">Új kategória</a>
+             @Html.ValidationMessageFor(model => model.TermekKategoriaId)
+         </div>
+
+         <div class="editor-label">
+             @Html.LabelFor(model => model.TermekMarkaId)
+         </div>
+         <div class="editor-field">
+             @Html.DropDownListFor(model => model.TermekMarkaId,(IOrderedEnumerable<SelectListItem>)ViewBag.Marka)
+             <a href="javascript:ujMarka();">Új márka</a>
+             @Html.ValidationMessageFor(model => model.TermekMarkaId)
+         </div>
+         
+         <div class="editor-label">
+             @Html.LabelFor(model => model.Tipus)
+         </div>
+         <div class="editor-field">
+             @Html.EditorFor(model => model.Tipus)
+             @Html.ValidationMessageFor(model => model.Tipus)
+         </div>
+         
+         <div class="editor-label">
+             <label for="file">Kép</label>
+         </div>
+         <div class="editor-field">
+             <input type="file" name="file" id="file"/>
+         </div>
+         
+         <div class="editor-label">
+             @Html.LabelFor(model => model.Allapot)
+         </div>
+
+         <div class="editor-field">
+             @Html.RadioButtonFor(model => model.Allapot,"Használt")
+             @Html.LabelFor(model => model.Allapot,"Használt")
+         </div>
+         
+         <div class="editor-field">
+             @Html.RadioButtonFor(model => model.Allapot,"Új")
+             @Html.LabelFor(model => model.Allapot,"Új")
+         </div>
+         
+         <div class="editor-label">
+             @Html.LabelFor(model => model.Ar)
+         </div>
+         <div class="editor-field">
+             @Html.TextBoxFor(model => model.Ar, new { onfocus = "if (this.value=='0') {this.value='';}", onblur = "if(this.value=='') {this.value='0'}", @Value = 0})
+             @Html.ValidationMessageFor(model => model.Ar)
+         </div>
+         
+         <div class="editor-label">
+             @Html.LabelFor(model => model.TechInfo)
+         </div>
+         <div class="editor-field">
+             @Html.TextAreaFor(model => model.TechInfo, new { @class = "ckeditor" })
+             @Html.ValidationMessageFor(model => model.TechInfo)
+         </div>
+
+         <p>
+             <input type="submit" value="Mentés"/>
+         </p>
+     </fieldset>
+ }
+
+<div title="Új kategória megadása" class="ui-helper-hidden" id="ujKatDialog">
+    @using (Html.BeginForm("CreateKategoria", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "katForm"}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <input type="hidden" value="true" name="uj"/>
+        
+        <text>Add meg a kategória nevét:</text>
+        <input type="text" name="Nev"/>
+        <br/>
+        <text>Add meg a kategóriához tartozó képet:</text>
+        <input type="file" name="file"/>
+    }
+</div>
+
+<div title="Új Márka megadása" class="ui-helper-hidden" id="ujMarkaDialog">
+        @using (Html.BeginForm("CreateMarka", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "markaForm"}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <input type="hidden" value="true" name="uj"/>
+        
+        <text>Add meg a márka nevét:</text>
+        <input type="text" name="Nev"/>
+        <br/>
+        <text>Add meg a márkához tartozó képet:</text>
+        <input type="file" name="file"/>
+    }
+</div>
+
+
+@section css{
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/bundles/msgBox")
+}
+
+@section Scripts{
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/msgBoxJS")
+
+    <script type="text/javascript">
+
+        function ujKategoria() {
+            $('#ujKatDialog').dialog({
+                    modal: true,
+                    buttons: {
+                        "Mentés": function() {
+                            $("#katForm").submit();
+                        },
+                        "Mégse": function() {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+        }
+        
+        function ujMarka() {
+            $('#ujMarkaDialog').dialog({
+                modal: true,
+                buttons: {
+                    "Mentés": function () {
+                        $("#markaForm").submit();
+                    },
+                    "Mégse": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        }
+
+    </script>
+}

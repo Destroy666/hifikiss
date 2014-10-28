@@ -1,0 +1,32 @@
+﻿@model KissHiFi.Models.TermekAdatlap
+
+@{
+    ViewBag.Title = Model.TermekMarka.Nev + " " + Model.Tipus;
+}
+
+<h2>
+    @Html.ActionLink("Termékek","Index") /
+    @Html.ActionLink(Model.TermekKategoria.Nev,Model.TermekKategoria.RouteNev,"Termekek") / 
+    @Html.ActionLink(Model.TermekMarka.Nev,Model.TermekKategoria.RouteNev + "/" + Model.TermekMarka.RouteNev,"Termekek")
+</h2>
+
+<article class="adatlap">
+    @Html.Image(Url.Content("~/Content/Termekek/" + Model.Kep),Model.TermekMarka.Nev + " " + Model.Tipus)
+    <span>
+        <h2>
+            @Model.TermekMarka.Nev @Model.Tipus
+        </h2>
+        <br/>
+        Műszaki állapot: @Model.Allapot
+        <br/>
+        A termék ára:
+        @if (Model.Ar == 0)
+        {
+            <text>Hívjon</text>
+        }else{
+            @Model.Ar
+        }
+        <h3>Technikai információk</h3>
+    @Html.Raw(Model.TechInfo)
+    </span>
+</article>

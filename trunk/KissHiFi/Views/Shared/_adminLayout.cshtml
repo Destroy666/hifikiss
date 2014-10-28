@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Hi-Fi Kiss</title>
+    @Styles.Render("~/Content/css")
+    @RenderSection("css", required: false)
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @RenderSection("scripts", required: false)
+</head>
+    <body>
+        <nav>
+            <img src="~/Content/themes/base/images/banner.png" />
+            <ul>
+                <li>@Html.ActionLink("Hírek","Index","Hirek")</li>
+                <li>@Html.ActionLink("Bemutatkozás","Index","Bemutatkozas")</li>
+                <li>@Html.ActionLink("Szolgáltatások","Index","Szolgaltatas")</li>
+                <li>@Html.ActionLink("Termékek","Index","Termekek")</li>
+                <li>@Html.ActionLink("Képek","Index","Kepek")</li>
+                <li>@Html.ActionLink("Elérhetőség","Index","Elerhetoseg")</li>
+            </ul>
+        </nav>
+        <section>
+                    <aside>
+            Admin menü:
+            <ul>
+                <li>@Html.ActionLink("Hírek","Hirek","Admin")</li>
+                <li>@Html.ActionLink("Bemutatkozás","Bemutatkozas","Admin")</li>
+                <li>@Html.ActionLink("Szolgáltatások","Szolgaltatas","Admin")</li>
+                <li>@Html.ActionLink("Termékek","Termek","Admin")</li>
+                <li>@Html.ActionLink("Képek","Kepek","Admin")</li>
+                <li>@Html.ActionLink("Elérhetőség","Elerhetoseg","Admin")</li>
+                <li>@Html.ActionLink("Regisztració","Registration","Account")</li>
+                <li>@Html.ActionLink("Kijelentkezés","LogOut","Account")</li>
+            </ul>
+        </aside>
+            @RenderBody()
+        </section>
+        <footer>
+            A weblapot készítette: Barasits Péter - &copy; 2013 - @DateTime.Now.Year
+        </footer>
+    </body>
+</html>

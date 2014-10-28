@@ -1,0 +1,95 @@
+﻿@model KissHiFi.Models.TermekAdatlap
+
+@{
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+    ViewBag.Title = "TermekEdit";
+}
+
+<h2>TermekEdit</h2>
+
+ @using (Html.BeginForm())
+ {
+     @Html.AntiForgeryToken()
+     @Html.ValidationSummary(true)
+
+     <fieldset>
+         <legend>Új termék felvitele</legend>
+         
+         @Html.HiddenFor(model => model.Id)
+
+         <div class="editor-label">
+             @Html.LabelFor(model => model.TermekKategoriaId)
+         </div>
+         <div class="editor-field">
+             @Html.DropDownListFor(model => model.TermekKategoriaId,(IEnumerable<SelectListItem>)ViewBag.Kategoria)
+             @Html.ValidationMessageFor(model => model.TermekKategoriaId)
+         </div>
+
+         <div class="editor-label">
+             @Html.LabelFor(model => model.TermekMarkaId)
+         </div>
+         <div class="editor-field">
+             @Html.DropDownListFor(model => model.TermekMarkaId,(IEnumerable<SelectListItem>)ViewBag.Marka)
+             @Html.ValidationMessageFor(model => model.TermekMarkaId)
+         </div>
+         
+         <div class="editor-label">
+             @Html.LabelFor(model => model.Tipus)
+         </div>
+         <div class="editor-field">
+             @Html.EditorFor(model => model.Tipus)
+             @Html.ValidationMessageFor(model => model.Tipus)
+         </div>
+         
+         <div class="editor-label">
+             @Html.LabelFor(model => model.Kep)
+         </div>
+         <div class="editor-field">
+             <input type="file" name="@Model.Kep" id="@Model.Kep"/>
+             @Html.ValidationMessageFor(model => model.Kep)
+         </div>
+         
+         <div class="editor-label">
+             @Html.LabelFor(model => model.Tipus)
+         </div>
+         <div class="editor-field">
+             @Html.EditorFor(model => model.Tipus)
+             @Html.ValidationMessageFor(model => model.Tipus)
+         </div>
+         
+         <div class="editor-field">
+             @Html.RadioButtonFor(model => model.Allapot,"Használt")
+             @Html.LabelFor(model => model.Allapot,"Használt")
+         </div>
+         
+         <div class="editor-field">
+             @Html.RadioButtonFor(model => model.Allapot,"Új")
+             @Html.LabelFor(model => model.Allapot,"Új")
+         </div>
+         
+         <div class="editor-label">
+             @Html.LabelFor(model => model.Ar)
+         </div>
+         <div class="editor-field">
+             @Html.EditorFor(model => model.Ar)
+             @Html.ValidationMessageFor(model => model.Ar)
+         </div>
+         
+         <div class="editor-label">
+             @Html.LabelFor(model => model.TechInfo)
+         </div>
+         <div class="editor-field">
+             @Html.TextAreaFor(model => model.TechInfo, new { @class = "ckeditor" })
+             @Html.ValidationMessageFor(model => model.TechInfo)
+         </div>
+
+         <p>
+             <input type="submit" value="Mentés"/>
+         </p>
+     </fieldset>
+ }
+
+@section Scripts{
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
